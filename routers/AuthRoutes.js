@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname,  "seejob", "seejob", "uploads"));
+    cb(null, path.join("seejob", "seejob", "uploads"));
   },
 
   filename: (req, file, cb) => {

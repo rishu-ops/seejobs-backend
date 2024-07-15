@@ -1563,7 +1563,7 @@ const userId = urlParams.get('id');
 
 if (userId) {
         // Make an API call to fetch job details based on jobId
-        fetch(`https://seejobs.onrender.com/api/auth/user/${userId}`)
+        fetch(`https://seejobs-backend.onrender.com/api/auth/user/${userId}`)
             .then(response => response.json())
             .then(data => {
                 // Use the fetched data to populate your job details page

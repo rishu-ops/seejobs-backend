@@ -20,10 +20,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.json());
 
-app.use(
-  "/uploads",
-  express.static(path.join(__dirname,  "seejob", "seejob", "uploads"))
-);
+app.use("/uploads", express.static(path.join("seejob", "seejob", "uploads")));
 
 app.use(morgan("dev"));
 
