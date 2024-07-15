@@ -20,9 +20,12 @@ const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.json());
 
+const excatPath = "./seejob/seejob/uploads";
+
 app.use(
   "/uploads",
-  express.static(path.join(__dirname, "seejob", "seejob", "uploads"))
+  // express.static(path.join(__dirname, "seejob", "seejob", "uploads"))
+  excatPath
 );
 
 app.use(morgan("dev"));
