@@ -5,7 +5,7 @@ import {
   login,
   getSingleUser,
   getSeacthUser,
-} from "./controllers/Authcontroller.js";
+} from "../controllers/Authcontroller.js";
 import path from "path";
 import multer from "multer";
 import { fileURLToPath } from "url";
@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join("seejob", "seejob", "uploads"));
+    cb(null, path.join(__dirname, "..", "seejob", "seejob", "uploads"));
   },
 
   filename: (req, file, cb) => {

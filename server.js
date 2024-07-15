@@ -1,7 +1,7 @@
 // server.js
 import express from "express";
 import connectDB from "./db/config.js";
-import authRoutes from "./AuthRoutes.js";
+import authRoutes from "./routers/AuthRoutes.js";
 import employerRoutes from "./routers/employer/employerRoutes.js";
 import jobsRoutes from "./routers/jobs/jobsRouter.js";
 import adminRoutes from "./routers/admin/adminRoutes.js";
@@ -20,7 +20,10 @@ const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.json());
 
-app.use("/uploads", express.static(path.join("seejob", "seejob", "uploads")));
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "seejob", "seejob", "uploads"))
+);
 
 app.use(morgan("dev"));
 
