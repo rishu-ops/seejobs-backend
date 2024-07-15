@@ -1,7 +1,7 @@
 // server.js
 import express from "express";
 import connectDB from "./db/config.js";
-import authRoutes from "./routers/AuthRoutes.js";
+import authRoutes from "./AuthRoutes.js";
 import employerRoutes from "./routers/employer/employerRoutes.js";
 import jobsRoutes from "./routers/jobs/jobsRouter.js";
 import adminRoutes from "./routers/admin/adminRoutes.js";
