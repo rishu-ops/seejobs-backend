@@ -25,7 +25,7 @@ const excatPath = "./seejob/seejob/uploads";
 app.use(
   "/uploads",
   // express.static(path.join(__dirname, "seejob", "seejob", "uploads"))
-  excatPath
+  express.static(excatPath)
 );
 
 app.use(morgan("dev"));
