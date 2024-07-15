@@ -16,12 +16,11 @@ const __dirname = path.dirname(__filename);
 const excatPath = "../seejob/seejob/uploads";
 
 const storage = multer.diskStorage({
+  
   destination: (req, file, cb) => {
-    cb(
-      null,
-      //  path.join(__dirname, "..", "seejob", "seejob", "uploads")
-      excatPath
-    );
+    cb(null,
+       path.join(__dirname, "..", "seejob", "seejob", "uploads")
+      );
   },
 
   filename: (req, file, cb) => {
