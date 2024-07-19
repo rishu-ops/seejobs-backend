@@ -1639,19 +1639,20 @@ if (userId) {
     // });
 
               
-                let basePathToRemove = "/home/rishu/Documents/Frount end ekta/";
+    const baseURL = "https://seejobs-backend.onrender.com/uploads";
+                     const basePathToRemove = "/opt/render/project/src/seejob/seejob/uploads"; // Adjust as necessary based on your setup
 
-     let relativePath = data.user.image.replace(basePathToRemove, "");
-     let resumeReleventPath = data.user.resume.replace(basePathToRemove , "");
+                     let relativePath = data.user.image.replace(basePathToRemove, "");
+                     let resumeRelativePath = data.user.resume.replace(basePathToRemove, "");
 
-              let finalUrl = `/${relativePath}`;
-              let finalResumePath = `/${resumeReleventPath}` 
-
+                     let finalUrl = `${baseURL}${relativePath}`;
+                     let resumeFinalUrl = `${baseURL}${resumeRelativePath}`;
+                     
               // ------------ downloading cv -------------------
 
       document.getElementById('download-link').addEventListener('click', function(e) {
     e.preventDefault();
-    const fileUrl = finalResumePath;
+    const fileUrl = resumeFinalUrl;
     const a = document.createElement('a');
     a.href = fileUrl;
     a.download = 'Updated_Resume.pdf';

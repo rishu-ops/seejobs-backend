@@ -1845,12 +1845,17 @@ const hold = localStorage.getItem('holdCounts');
             
 
                       container.innerHTML = ''; // Clear previous results=-098765
-                      let basePathToRemove = "/opt/render/project/src/seejob/seejob/";
+                     
+                      const baseURL = "https://seejobs-backend.onrender.com/uploads";
+                     const basePathToRemove = "/opt/render/project/src/seejob/seejob/uploads"; // Adjust as necessary based on your setup
+
+
 
             result.user.forEach(user => {
                               
-              let relativePath = user.image.replace(basePathToRemove, "https://seejobs-backend.onrender.com/");
-              let finalUrl = `/${relativePath}`;
+              let relativePath = user.image.replace(basePathToRemove, "");
+                let finalUrl = `${baseURL}${relativePath}`;
+
 
                     const userHtml = `
                   <div class="row">
