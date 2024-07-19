@@ -63,12 +63,8 @@ const jobListingSchema = new Schema(
     category: {
       type: String,
     },
-    Education: {
-      type: String,
-      required: true,
-    },
-    EdDetails: {
-      type: String,
+    education: {
+      type: [String],
       required: true,
     },
     skills: {
