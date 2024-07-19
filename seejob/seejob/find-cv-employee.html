@@ -1845,11 +1845,11 @@ const hold = localStorage.getItem('holdCounts');
             
 
                       container.innerHTML = ''; // Clear previous results=-098765
-                      let basePathToRemove = "/home/rishu/Documents/Frount end ekta/";
+                      let basePathToRemove = "/opt/render/project/src/seejob/seejob/";
 
             result.user.forEach(user => {
                               
-              let relativePath = user.image.replace(basePathToRemove, "");
+              let relativePath = user.image.replace(basePathToRemove, "https://seejobs-backend.onrender.com/");
               let finalUrl = `/${relativePath}`;
 
                     const userHtml = `
