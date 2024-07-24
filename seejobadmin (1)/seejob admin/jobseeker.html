@@ -316,11 +316,9 @@
           data.userData.forEach((job) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-					<td>${job.email}</td>
-					<td class="font-large"><a href="${job.jobCategoryUrl}">${
-              job.jobCategory
-            }</a></td>
-					<td class="font-large">${new Date(job.expireDate).toLocaleDateString()}</td>				
+					<td>${job.username}</td>
+					<td class="font-large"><a>${job.email}</a></td>
+					<td class="font-large">${new Date(job.createdAt).toLocaleDateString()}</td>				
 					<td>
 						<a href="post-job.html" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Verified</a>
 						&nbsp;

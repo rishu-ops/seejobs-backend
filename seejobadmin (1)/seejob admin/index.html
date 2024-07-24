@@ -505,10 +505,10 @@
               //   <a href="http://solvehub.in/seejob/candidate-application.html?id=${job._id}">${job.username} - ${job.email} - </a>
               li.innerHTML = `
                             <p class="fw-bold text-primary">
-                                 <a href="../../seejob/seejob/candidate-application.html?id=${job._id}">${job.username} - ${job.email} - </a>
+                                 <a href="https://seejob.netlify.app/candidate-application.html?id=${job._id}">${job.username} - ${job.email} - </a>
                                 <span class="text-secondary"><i class="fas fa-home"></i> ${job.location}</span>
                                 <br>
-                                <span class="text-secondary fw-light">${job.address}</span>
+                                <span class="text-secondary fw-light"> Current Company - ${job.company}</span>
                             </p>
                         `;
               jobList.appendChild(li);
@@ -529,7 +529,7 @@
               const li = document.createElement("li");
               li.innerHTML = `
                             <p class="fw-bold text-primary">
-                                <a href="../../seejob/seejob/job-internal.html?id=${job._id}">${job.jobTitle} - ${job.hiringForCompanies} - </a>
+                                <a href="https://seejob.netlify.app/job-internal.html?id=${job._id}">${job.jobTitle} - ${job.hiringForCompanies} - </a>
                                 <br>
                                 <span class="text-secondary"><i class="fas fa-home"></i> ${job.locality}</span>
                             </p>

@@ -24,6 +24,159 @@
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous"> -->
 
+    <style>
+
+      /* -------------------- toast notification style */
+      
+      .toast { 
+      position: fixed; 
+      top: 25px; 
+      right: 25px; 
+      max-width: 300px; 
+      background: #fff; 
+      padding: 0.5rem; 
+      border-radius: 4px; 
+      box-shadow: -1px 1px 10px
+      rgba(0, 0, 0, 0.3); 
+      z-index: 1023; 
+      animation: slideInRight 0.3s 
+          ease-in-out forwards, 
+      fadeOut 0.5s ease-in-out 
+          forwards 3s; 
+      transform: translateX(110%); 
+      } 
+      
+      .toast.closing { 
+      animation: slideOutRight 0.5s 
+      ease-in-out forwards; 
+      } 
+      
+      .toast-progress { 
+      position: absolute; 
+      display: block; 
+      bottom: 0; 
+      left: 0; 
+      height: 4px; 
+      width: 100%; 
+      background: #b7b7b7; 
+      animation: toastProgress 3s 
+      ease-in-out forwards; 
+      } 
+      
+      .toast-content-wrapper { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      } 
+      
+      .toast-icon { 
+      padding: 0.35rem 0.5rem; 
+      font-size: 1.5rem; 
+      } 
+      
+      .toast-message { 
+      flex: 1; 
+      font-size: 0.9rem; 
+      color: #000000; 
+      padding: 0.5rem; 
+      } 
+      
+      .toast.toast-success { 
+      background: #95eab8; 
+      } 
+      
+      .toast.toast-success .toast-progress { 
+      background-color: #2ecc71; 
+      } 
+      
+      .toast.toast-danger { 
+      background: #efaca5; 
+      } 
+      
+      .toast.toast-danger .toast-progress { 
+      background-color: #e74c3c; 
+      } 
+      
+      .toast.toast-info { 
+      background: #bddaed; 
+      } 
+      
+      .toast.toast-info .toast-progress { 
+      background-color: #3498db; 
+      } 
+      
+      .toast.toast-warning { 
+      background: #ead994; 
+      } 
+      
+      .toast.toast-warning .toast-progress { 
+      background-color: #f1c40f; 
+      } 
+      
+      @keyframes slideInRight { 
+      0% { 
+      transform: translateX(110%); 
+      } 
+      
+      75% { 
+      transform: translateX(-10%); 
+      } 
+      
+      100% { 
+      transform: translateX(0%); 
+      } 
+      } 
+      
+      @keyframes slideOutRight { 
+      0% { 
+      transform: translateX(0%);   
+      .toast-buttons { 
+      max-width: 700px; 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 15px; 
+      margin: 2em auto; 
+      } 
+      
+      .toast-buttons { 
+      max-width: 700px; 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 15px; 
+      margin: 2em auto; 
+      } 
+      
+      } 
+      
+      100% { 
+      transform: translateX(110%); 
+      } 
+      } 
+      
+      @keyframes fadeOut { 
+      0% { 
+      opacity: 1; 
+      } 
+      
+      100% { 
+      opacity: 0; 
+      } 
+      } 
+      
+      @keyframes toastProgress { 
+      0% { 
+      width: 100%; 
+      } 
+      
+      100% { 
+      width: 0%; 
+      } 
+      }
+      </style>
+      
+
      </head>
 <body>
 
@@ -664,7 +817,9 @@
     <!-- end /.container -->
   </div>
   <!-- end /.footer-big -->
-
+   
+  <div class="toast-overlay" 
+  id="toast-overlay"></div> 
   
 </footer>
 <!-- ----------modal for otp------------------ -->
@@ -1070,6 +1225,60 @@
 
 <script>
 
+
+// -------------------- toast notification 
+
+let icon = { 
+    success: 
+    '<span class="material-symbols-outlined">task_alt</span>', 
+    danger: 
+    '<span class="material-symbols-outlined">error</span>', 
+    warning: 
+    '<span class="material-symbols-outlined">warning</span>', 
+    info: 
+    '<span class="material-symbols-outlined">info</span>', 
+};
+
+const showToast = ( 
+    message = "Sample Message", 
+    toastType = "info", 
+    duration = 5000) => { 
+    if ( 
+        !Object.keys(icon).includes(toastType)) 
+        toastType = "info"; 
+  
+    let box = document.createElement("div"); 
+    box.classList.add( 
+        "toast", `toast-${toastType}`); 
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
+                      <div class="toast-icon"> 
+                      ${icon[toastType]} 
+                      </div> 
+                      <div class="toast-message">${message}</div> 
+                      <div class="toast-progress"></div> 
+                      </div>`; 
+    duration = duration || 5000; 
+    box.querySelector(".toast-progress").style.animationDuration = 
+            `${duration / 1000}s`; 
+  
+    let toastAlready =  
+        document.body.querySelector(".toast"); 
+    if (toastAlready) { 
+        toastAlready.remove(); 
+    } 
+  
+    document.body.appendChild(box)}; 
+  
+let submit =  
+    document.querySelector(".custom-toast.success-toast"); 
+let information =  
+    document.querySelector(".custom-toast.info-toast"); 
+let failed =  
+    document.querySelector(".custom-toast.danger-toast"); 
+let warn =  
+    document.querySelector(".custom-toast.warning-toast"); 
+
+
 document.getElementById('registerFormId').addEventListener('submit', async function(event) {
   event.preventDefault();
 
@@ -1114,7 +1323,10 @@ document.getElementById('registerFormId').addEventListener('submit', async funct
     if (response.ok) {
       
       const result = await response.json();
-      alert(result.message)
+      showToast(result.message ,"success",3000); 
+      setTimeout(() => {
+          window.location.href = 'index.html'  
+        }, 3000);
 
     } else {
       const error = await response.json();
@@ -1124,7 +1336,8 @@ document.getElementById('registerFormId').addEventListener('submit', async funct
 
   } catch (error) {
     console.error('Fetch error:', error.message);
-    alert('Error: ' + error);
+    showToast(error ,"success",3000); 
+
   }
 });
 

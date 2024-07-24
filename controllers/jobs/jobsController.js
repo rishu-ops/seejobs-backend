@@ -75,6 +75,7 @@ export const getSearchJobs = async (req, res) => {
       workShift,
       jobType,
       category,
+      skills,
     } = req.query;
 
     // Construct the filter object
@@ -123,6 +124,10 @@ export const getSearchJobs = async (req, res) => {
 
     if (jobType) {
       filter.jobType = { $in: jobType.split(",") }; // Split comma-separated values
+    }
+
+    if (skills) {
+      filter.skills = { $in: skills.split(",") }; // Split comma-separated values
     }
 
     console.log(filter);

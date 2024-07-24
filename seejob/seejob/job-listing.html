@@ -1104,17 +1104,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Retrieve filter values from input elements
   
     const inputRoles = document.getElementById('input-roles').value;
-
     const inputSalaryMin = document.getElementById('input-salary-min').value;
     const inputSalaryMax = document.getElementById('input-salary-max').value;
     const inputExperience = document.getElementById('range-experience').value;
     const inputLocationField = document.getElementById('input-location').value;
- 
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
     const urlLocation = urlParams.get('location')
- 
-  
     const inputLocation = inputLocationField || urlLocation
 
     // Add session storage filters if present
